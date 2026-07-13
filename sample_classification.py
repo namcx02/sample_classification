@@ -32,12 +32,12 @@ df_ket_qua = df_clean[["Mã số mẫu", "Số lần tách", "DNAEXT"]]
 # display(df_ket_qua)
 
 df_grouped = df_ket_qua.groupby("Mã số mẫu").agg(Nồng_độ_trung_bình =("DNAEXT", "mean"), Danh_sách_nồng_độ =("DNAEXT", list), Danh_sách_lần_tách=("Số lần tách", list)).reset_index()
-df_grouped['Tổng số lần tách'] = df_grouped['Danh_sách_lần_tách'].apply(len)
+df_grouped["Tổng số lần tách"] = df_grouped["Danh_sách_lần_tách"].apply(len)
 
-df_grouped['C1'] = df_grouped.apply(lambda x: x['Danh_sách_nồng_độ'][x['Danh_sách_lần_tách'].index(1)] if 1 in x['Danh_sách_lần_tách'] else 0, axis=1)
-df_grouped['C2'] = df_grouped.apply(lambda x: x['Danh_sách_nồng_độ'][x["Danh_sách_lần_tách"].index(2)] if 2 in x['Danh_sách_lần_tách'] else 0, axis=1)
-df_grouped['C3'] = df_grouped.apply(lambda x: x['Danh_sách_nồng_độ'][x["Danh_sách_lần_tách"].index(3)] if 3 in x['Danh_sách_lần_tách'] else 0, axis=1)
-df_grouped['C4'] = df_grouped.apply(lambda x: x['Danh_sách_nồng_độ'][x["Danh_sách_lần_tách"].index(4)] if 4 in x['Danh_sách_lần_tách'] else 0, axis=1)
+df_grouped["C1"] = df_grouped.apply(lambda x: x["Danh_sách_nồng_độ"][x["Danh_sách_lần_tách"].index(1)] if 1 in x["Danh_sách_lần_tách"] else 0, axis=1)
+df_grouped["C2"] = df_grouped.apply(lambda x: x["Danh_sách_nồng_độ"][x["Danh_sách_lần_tách"].index(2)] if 2 in x["Danh_sách_lần_tách"] else 0, axis=1)
+df_grouped["C3"] = df_grouped.apply(lambda x: x["Danh_sách_nồng_độ"][x["Danh_sách_lần_tách"].index(3)] if 3 in x["Danh_sách_lần_tách"] else 0, axis=1)
+df_grouped["C4"] = df_grouped.apply(lambda x: x["Danh_sách_nồng_độ"][x["Danh_sách_lần_tách"].index(4)] if 4 in x["Danh_sách_lần_tách"] else 0, axis=1)
 
 df_grouped["Thể tích"] = df_grouped["Tổng số lần tách"] * 40
 df_grouped["Tổng lượng"] = df_grouped["Nồng_độ_trung_bình"] * df_grouped["Thể tích"]
@@ -87,7 +87,7 @@ def phan_loai_mau(row):
 
   return "Ngoại lệ (Chưa có quy tắc)"
 
-df_grouped['Note'] = df_grouped.apply(phan_loai_mau, axis=1)
+df_grouped["Note"] = df_grouped.apply(phan_loai_mau, axis=1)
 display(df_grouped)
 
 ten_file_xuat = "Ket_qua_phan_loai_mau.xlsx"
