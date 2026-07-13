@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 danh_sach_file = [
-    # "Danh_sach_mau_Co_Nong_Do.xlsx",
-    "Danh_sach_mau_Test_Plate_Lan_3_4.xlsx"
+    "File_1.xlsx",
+    "File_2.xlsx"
 ]
 
 danh_sach_df = []
